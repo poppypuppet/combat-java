@@ -5,8 +5,6 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>victoria</groupId>
-    <artifactId>combat</artifactId>
+    <artifactId>CombatJava</artifactId>
     <version>1.0-SNAPSHOT</version>
-
-
 </project>
