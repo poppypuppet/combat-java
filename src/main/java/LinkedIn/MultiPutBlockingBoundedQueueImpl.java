@@ -2,9 +2,9 @@ package LinkedIn;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 
 /**
@@ -50,23 +50,115 @@ import java.util.concurrent.locks.Lock;
  * 如果唤醒的是读线程,皆大欢喜,如果唤醒的是写线程,那么线程刚被唤醒,又被阻塞了,这时又去唤醒,这样就浪费了很多时间.
  */
 public class MultiPutBlockingBoundedQueueImpl<T> implements MultiPutBlockingBoundedQueue<T> {
-    private boolean _isInitDone = false;
-    private int _capacity = 0;
     private LinkedList _buffer = null;
-    private int _currSize = 0;
+    private int _capacity;
+    private int _currSize;
     private Lock _lock;
     private Lock _writerLock;
     private Condition _notEmpty;
     private Condition _notFull;
 
-    private Object lock = new Object();
+    @Override
+    public void init(int capacity) throws Exception {
+        synchronized (_buffer) {
+            if (_buffer != null || capacity < 0) {
+                throw new Exception("");
+            }
+            _capacity = capacity;
+            _currSize = 0;
+            _writerLock = new ReentrantLock();
+            _lock = new ReentrantLock();
+            _notEmpty = _lock.newCondition();
+            _notFull = _lock.newCondition();
+        }
+    }
 
-    private ConcurrentLinkedQueue<T> concurrentLinkedQueue = null;
+    @Override
+    public Object get() throws Exception {
+        try {
+            _lock.lock();
+            // 如果队列没有元素就继续等待
+            while (_currSize <= 0) {
+                try {
+                    _notEmpty.await();
+                }
+                catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+            // 有元素的,取出返回.
+            _currSize--;
+            // 发出有空位的信号
+            _notFull.signal();
+            return _buffer.remove(0);
+        }
+        finally {
+            _lock.unlock();
+        }
+    }
+
+    @Override
+    public void put(T obj) throws Exception {
+        try {
+            _writerLock.lock();
+            _lock.lock();
+            // 现有大小已经超多容量,不能进入,等待
+            while (_currSize >= _capacity) {
+                try {
+                    _notFull.await();
+                }
+                catch (InterruptedException ex) {
+                    ex.printStackTrace();
+                }
+            }
+            _currSize++;
+            _buffer.add(obj);
+            _notEmpty.signal();
+        }
+        catch (Exception ex) {
+            throw ex;
+        }
+        finally {
+            _lock.unlock();
+            _writerLock.unlock();
+        }
+    }
+
+    @Override
+    public void multiput(List<T> objs) throws Exception {
+        try {
+            // atomic write, put all inside one lock interval
+            _writerLock.lock();
+            _lock.lock();
+            for (T obj : objs) {
+                while (_currSize >= _capacity) {
+                    try {
+                        _notFull.await();
+                    }
+                    catch (InterruptedException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+                _buffer.add(obj);
+                _currSize++;
+                _notEmpty.signal();
+            }
+        }
+        catch (Exception ex) {
+            throw ex;
+        }
+        finally {
+            _lock.unlock();
+            _writerLock.unlock();
+        }
+    }
 
     private LinkedList<T> queue = null;
     private int capacity;
+    private Object lock = new Object();
 
-    public void init(int capacity) throws Exception {
+
+    public void init_sync(int capacity) throws Exception {
         if (queue != null || capacity < 0) {
             throw new Exception("Shit!");
         }
@@ -76,7 +168,7 @@ public class MultiPutBlockingBoundedQueueImpl<T> implements MultiPutBlockingBoun
         }
     }
 
-    public T get() throws Exception {
+    public T get_sync() throws Exception {
         synchronized (lock) {
             if (queue == null) {
                 throw new Exception("Shit!");
@@ -87,8 +179,7 @@ public class MultiPutBlockingBoundedQueueImpl<T> implements MultiPutBlockingBoun
         }
     }
 
-
-    public void put(T obj) throws Exception {
+    public void put_sync(T obj) throws Exception {
         synchronized (lock) {
             if (queue == null || queue.size() > capacity) {
                 throw new Exception("Shit!");
@@ -99,7 +190,7 @@ public class MultiPutBlockingBoundedQueueImpl<T> implements MultiPutBlockingBoun
         }
     }
 
-    public void multiput(List<T> objs) throws Exception {
+    public void multiput_sync(List<T> objs) throws Exception {
         synchronized (lock) {
             if (queue == null) {
                 throw new Exception("Shit!");
@@ -110,4 +201,5 @@ public class MultiPutBlockingBoundedQueueImpl<T> implements MultiPutBlockingBoun
             }
         }
     }
+
 }
