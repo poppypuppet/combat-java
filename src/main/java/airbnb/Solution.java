@@ -1,6 +1,16 @@
 package airbnb;
 
+import LinkedIn.LookupInSortedRange;
+import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader;
+import com.sun.xml.internal.fastinfoset.util.CharArray;
+import com.sun.xml.internal.xsom.impl.scd.Iterators;
+
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 
 class Solution {
     public static void main(String[] args) {
@@ -39,6 +49,10 @@ class Solution {
         DisplayPages displayPages = new DisplayPages();
         ArrayList<ArrayList<String>> ret = displayPages.getPages(source, 12);
         displayPages.printPages(ret);
-    }
 
+        LookupInSortedRange lookupInSortedRange = new LookupInSortedRange();
+        for (char c : "ackz".toCharArray()) {
+            System.out.println(lookupInSortedRange.findInSortedRange("cfjpv", c));
+        }
+    }
 }

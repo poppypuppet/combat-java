@@ -42,8 +42,7 @@ public class TextFile implements Iterable<String> {
         try (FileReader fileReader = new FileReader(fileName);
              BufferedReader bufferedReader = new BufferedReader(fileReader)) {
             return new LineIterator(bufferedReader);
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
             return null;
         }
@@ -62,8 +61,7 @@ public class TextFile implements Iterable<String> {
         public boolean hasNext() {
             try {
                 nextLine = bufferedReader.readLine();
-            }
-            catch (IOException e) {
+            } catch (IOException e) {
                 e.printStackTrace();
             }
             return nextLine != null;
