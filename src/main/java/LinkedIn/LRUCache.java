@@ -15,20 +15,20 @@ import java.util.Map;
 
 public class LRUCache {
     private final int capacity;
-    private Node begin;
-    private Node end;
-    private Map<Integer, Node> index;
+    private ListNode begin;
+    private ListNode end;
+    private Map<Integer, ListNode> index;
 
     public LRUCache(int capacity) {
         this.capacity = capacity;
         index = new HashMap<>();
-        begin = new Node(-1, -1, null, end);
-        end = new Node(-1, -1, begin, null);
+        begin = new ListNode(-1, -1, null, end);
+        end = new ListNode(-1, -1, begin, null);
     }
 
     public int get(int key) {
         if (index.containsKey(key)) {
-            Node n = index.get(key);
+            ListNode n = index.get(key);
             remove(n);
             add(n);
             return n.value;
@@ -40,7 +40,7 @@ public class LRUCache {
 
     public void set(int key, int value) {
         if (index.containsKey(key)) {
-            Node n = index.get(key);
+            ListNode n = index.get(key);
             n.value = value;
             remove(n);
             add(n);
@@ -50,43 +50,21 @@ public class LRUCache {
                 index.remove(begin.next.key);
                 remove(begin.next);
             }
-            Node n = new Node(key, value);
+            ListNode n = new ListNode(key, value);
             add(n);
             index.put(key, n);
         }
     }
 
-    private void remove(Node n) {
+    private void remove(ListNode n) {
         n.prev.next = n.next;
         n.next.prev = n.prev;
     }
 
-    private void add(Node n) {
+    private void add(ListNode n) {
         end.prev.next = n;
         n.prev = end.prev;
         n.next = end;
         end.prev = n;
-    }
-
-
-    public static class Node {
-        public Node prev;
-        public Node next;
-        public int key;
-        public int value;
-
-        public Node(int key, int value) {
-            this.key = key;
-            this.value = value;
-            this.prev = null;
-            this.next = null;
-        }
-
-        public Node(int key, int value, Node prev, Node next) {
-            this.key = key;
-            this.value = value;
-            this.prev = prev;
-            this.next = next;
-        }
     }
 }
