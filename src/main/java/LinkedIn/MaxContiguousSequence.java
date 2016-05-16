@@ -21,23 +21,11 @@ import java.util.Arrays;
  * Be prepared to remind candidates that we only care about the sum, not which portion of the sequence gave that sum.
  */
 public class MaxContiguousSequence {
-    /**
-     * 一个是局部最优,就是必须包含当前元素(以当前元素结尾)的最优的解,一个是全局最优,就是到当前元素为止最优的解是.
-     * local[i] = max(global[i-1]+nums[i], nums[i]); //这是错的
-     * local[i] = max(local[i-1]+nums[i], nums[i]); //这是对的
-     * global[i] = max(local[i], global[i-1]);
-     */
-    public int maxSubArray(int[] nums) {
-        if (nums.length <= 0) {
-            return 0;
-        }
-        int local = nums[0];
-        int global = local > 0 ? local : 0; // 不一定包含
-        for (int i = 1; i < nums.length; i++) {
-            local = Math.max(local + nums[i], nums[i]);
-            global = Math.max(global, local);
-        }
-        return global;
+    public static void main(String[] argv) {
+        int[] nums = {-4, -3};
+        Arrays.stream(nums).forEach(i -> System.out.println(i));
+        MaxContiguousSequence max = new MaxContiguousSequence();
+        System.out.println(max.maxProduct(nums));
     }
 
     /**
@@ -62,18 +50,30 @@ public class MaxContiguousSequence {
     }
 
     /**
+     * 一个是局部最优,就是必须包含当前元素(以当前元素结尾)的最优的解,一个是全局最优,就是到当前元素为止最优的解是.
+     * local[i] = max(global[i-1]+nums[i], nums[i]); //这是错的
+     * local[i] = max(local[i-1]+nums[i], nums[i]); //这是对的
+     * global[i] = max(local[i], global[i-1]);
+     */
+    public int maxSubArray(int[] nums) {
+        if (nums.length <= 0) {
+            return 0;
+        }
+        int local = nums[0];
+        int global = local > 0 ? local : 0; // 不一定包含
+        for (int i = 1; i < nums.length; i++) {
+            local = Math.max(local + nums[i], nums[i]);
+            global = Math.max(global, local);
+        }
+        return global;
+    }
+
+    /**
      * Maximum sum such that no two elements are adjacent
      * excl: 不包含前一个元素的最大和
      * incl: 包含前一个元素的最大和
      */
     int maxSumAdjacent(int[] nums) {
         return 0;
-    }
-
-    public static void main(String[] argv) {
-        int[] nums = {-4, -3};
-        Arrays.stream(nums).forEach(i -> System.out.println(i));
-        MaxContiguousSequence max = new MaxContiguousSequence();
-        System.out.println(max.maxProduct(nums));
     }
 }
