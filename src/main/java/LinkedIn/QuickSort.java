@@ -10,7 +10,7 @@ import java.util.Arrays;
  * 快速排序的最直接竞争者是堆排序(Heap-sort).
  * 堆排序通常比快速排序稍微慢,但是最坏情况的运行时间总是O(n log n).快速排序是经常比较快,除了intro-sort变化版本外,仍然有最坏情况性能的机会.
  * 如果事先知道堆排序将会是需要使用的,那么直接地使用堆排序比等待intro-sort再切换到它还要快.
- * 堆排序也拥有重要的特点,仅使用固定额外的空间(堆排序是原地排序),而即使是最佳的快速排序变化版本也需要Θ(log n)的空间.
+ * 堆排序也拥有重要的特点,仅使用固定额外的空间(堆排序是原地排序),而即使是最佳的快速排序变化版本也需要(log n)的空间.
  * 然而,堆排序需要有效率的随机存取才能变成可行.
  * <p>
  * 快速排序也与归并排序(Merge-sort)竞争.
@@ -18,14 +18,14 @@ import java.util.Arrays;
  * 且可以轻易地被采用在链表(linked list)和存储在慢速访问媒体上像是磁盘存储或网络连接存储的非常巨大数列.
  * 尽管快速排序可以被重新改写使用在炼串列上,但是它通常会因为无法随机存取而导致差的基准选择.归并排序的主要缺点,是在最佳情况下需要Ω(n)额外的空间.
  */
-public class Sort {
+public class QuickSort {
     public static void main(String argv[]) {
         Integer[] a = {2, 9, 8, 3, 7, 4};
-        quick(a);
+        sort(a);
         Arrays.stream(a).forEach(value -> System.out.println(value));
     }
 
-    public static void quick(Comparable[] a) {
+    public static void sort(Comparable[] a) {
         if (a.length > 0) {
             quick(a, 0, a.length - 1);
         }

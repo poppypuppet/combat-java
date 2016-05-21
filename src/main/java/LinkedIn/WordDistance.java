@@ -24,7 +24,7 @@ import java.util.Map;
  * words and returns the shortest distance (in words) between those two
  * words in the provided text.
  * <p>
- * "quick" appears twice in the input. There are two possible distance values for "quick" and * (3 ‐ 1) = 2 and (4 ‐ 3) = 1.
+ * "sort" appears twice in the input. There are two possible distance values for "sort" and * (3 ‐ 1) = 2 and (4 ‐ 3) = 1.
  * Since we have to return the shortest distance between the two words we return 1.
  */
 
@@ -32,9 +32,9 @@ public class WordDistance {
     private List<String> words;
 
     public static void main(String argv[]) {
-        WordDistance finder = new WordDistance(Arrays.asList("the", "quick", "brown", "fox", "quick"));
+        WordDistance finder = new WordDistance(Arrays.asList("the", "sort", "brown", "fox", "sort"));
         assert (finder.distance("fox", "the") == 3);
-        assert (finder.distance("quick", "fox") == 1);
+        assert (finder.distance("sort", "fox") == 1);
     }
 
     public WordDistance(List<String> words) {
