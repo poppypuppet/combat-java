@@ -22,6 +22,6 @@ public class HeapSort {
         Arrays.stream(a).forEach(e -> add2Heap(e));
     }
 
-    private static void add2Heap(Comparable e) {
+    private void add2Heap(Comparable e) {
     }
 }
