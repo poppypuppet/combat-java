@@ -21,7 +21,7 @@ import java.util.Arrays;
 public class QuickSort {
     public static void main(String argv[]) {
         Integer[] a = {2, 9, 8, 3, 7, 4};
-        sort(a);
+        QuickSort.sort(a);
         Arrays.stream(a).forEach(value -> System.out.println(value));
     }
 
