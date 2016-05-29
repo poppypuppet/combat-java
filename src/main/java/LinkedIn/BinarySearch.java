@@ -1,6 +1,16 @@
 package LinkedIn;
 
+import java.util.Arrays;
+import java.util.EnumSet;
+
 public class BinarySearch {
+    public static void main(String[] argv) {
+        BinarySearch bs = new BinarySearch();
+        Integer[] nums = {0, 1, 2, 3, 4, 5, 6};
+        Arrays.stream(nums).forEach(i -> System.out.println(bs.search(nums, i)));
+        System.out.println(bs.search(nums, 9));
+    }
+
     int search(Comparable[] nums, Comparable e) {
         int res = -1;
         int len = nums.length;
@@ -18,7 +28,6 @@ public class BinarySearch {
                 break;
             }
         }
-
         return res;
     }
 }
