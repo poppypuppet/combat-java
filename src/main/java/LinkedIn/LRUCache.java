@@ -32,8 +32,7 @@ public class LRUCache {
             remove(n);
             add(n);
             return n.value;
-        }
-        else {
+        } else {
             return -1;
         }
     }
@@ -44,8 +43,7 @@ public class LRUCache {
             n.value = value;
             remove(n);
             add(n);
-        }
-        else {
+        } else {
             if (index.size() >= capacity) {
                 index.remove(begin.next.key);
                 remove(begin.next);

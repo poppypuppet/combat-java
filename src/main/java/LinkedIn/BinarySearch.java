@@ -11,11 +11,9 @@ public class BinarySearch {
             int mid = (start + end) / 2;
             if (e.compareTo(nums[mid]) < 0) {
                 end = mid - 1;
-            }
-            else if (e.compareTo(nums[mid]) > 0) {
+            } else if (e.compareTo(nums[mid]) > 0) {
                 start = mid + 1;
-            }
-            else {
+            } else {
                 res = mid;
                 break;
             }

@@ -21,8 +21,7 @@ class NestedListWeightSum {
         for (NestedInteger i : input) {
             if (i.isInteger()) {
                 sum += i.getInteger() * depth;
-            }
-            else {
+            } else {
                 sum += depthSumDFS(i.getList(), depth + 1);
             }
         }
@@ -60,8 +59,7 @@ class NestedListWeightSum {
         for (NestedInteger item : input) {
             if (item.isInteger()) {
                 sum += item.getInteger();
-            }
-            else {
+            } else {
                 reverseDepthSumDFS(item.getList(), index + 1, levels);
             }
         }
@@ -80,11 +78,9 @@ class NestedListWeightSum {
         for (NestedInteger item : input) {
             if (item == null) {
                 // ignore it
-            }
-            else if (item.isInteger()) {
+            } else if (item.isInteger()) {
                 sum += item.getInteger() * weight;
-            }
-            else {
+            } else {
                 sum += helperTwoTraversal(item.getList(), weight - 1);
             }
         }
@@ -98,8 +94,7 @@ class NestedListWeightSum {
     public int reverseDepthSumOneTraversal(List<NestedInteger> input) {
         if (input == null || input.isEmpty()) {
             return 0;
-        }
-        else {
+        } else {
             unweightedSum = 0;
             maxLevel = 1;
             int weightedSum = helperOneTraversal(input, 1);
@@ -112,12 +107,10 @@ class NestedListWeightSum {
         for (NestedInteger item : input) {
             if (item == null) {
 // ignore it
-            }
-            else if (item.isInteger()) {
+            } else if (item.isInteger()) {
                 weightedSum += item.getInteger() * depth;
                 unweightedSum += item.getInteger();
-            }
-            else {
+            } else {
                 weightedSum += helperOneTraversal(item.getList(), depth + 1);
                 maxLevel = Math.max(maxLevel, depth + 1);
             }

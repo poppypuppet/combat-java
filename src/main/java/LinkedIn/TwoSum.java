@@ -39,11 +39,9 @@ public class TwoSum {
                 int now = arr.get(j) + arr.get(k);
                 if (now > remain) {
                     k--;
-                }
-                else if (now < remain) {
+                } else if (now < remain) {
                     j++;
-                }
-                else {
+                } else {
                     return true;
                 }
             }

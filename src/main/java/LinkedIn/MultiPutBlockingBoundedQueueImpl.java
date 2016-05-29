@@ -81,8 +81,7 @@ public class MultiPutBlockingBoundedQueueImpl<T> implements MultiPutBlockingBoun
             while (_currSize <= 0) {
                 try {
                     _notEmpty.await();
-                }
-                catch (InterruptedException e) {
+                } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
@@ -91,8 +90,7 @@ public class MultiPutBlockingBoundedQueueImpl<T> implements MultiPutBlockingBoun
             // 发出有空位的信号
             _notFull.signal();
             return _buffer.remove(0);
-        }
-        finally {
+        } finally {
             _lock.unlock();
         }
     }
@@ -106,19 +104,16 @@ public class MultiPutBlockingBoundedQueueImpl<T> implements MultiPutBlockingBoun
             while (_currSize >= _capacity) {
                 try {
                     _notFull.await();
-                }
-                catch (InterruptedException ex) {
+                } catch (InterruptedException ex) {
                     ex.printStackTrace();
                 }
             }
             _currSize++;
             _buffer.add(obj);
             _notEmpty.signal();
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             throw ex;
-        }
-        finally {
+        } finally {
             _lock.unlock();
             _writerLock.unlock();
         }
@@ -134,8 +129,7 @@ public class MultiPutBlockingBoundedQueueImpl<T> implements MultiPutBlockingBoun
                 while (_currSize >= _capacity) {
                     try {
                         _notFull.await();
-                    }
-                    catch (InterruptedException ex) {
+                    } catch (InterruptedException ex) {
                         ex.printStackTrace();
                     }
                 }
@@ -143,11 +137,9 @@ public class MultiPutBlockingBoundedQueueImpl<T> implements MultiPutBlockingBoun
                 _currSize++;
                 _notEmpty.signal();
             }
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             throw ex;
-        }
-        finally {
+        } finally {
             _lock.unlock();
             _writerLock.unlock();
         }
@@ -161,8 +153,7 @@ public class MultiPutBlockingBoundedQueueImpl<T> implements MultiPutBlockingBoun
     public void init_sync(int capacity) throws Exception {
         if (queue != null || capacity < 0) {
             throw new Exception("Shit!");
-        }
-        else {
+        } else {
             this.queue = new LinkedList<T>();
             this.capacity = capacity;
         }
@@ -172,8 +163,7 @@ public class MultiPutBlockingBoundedQueueImpl<T> implements MultiPutBlockingBoun
         synchronized (lock) {
             if (queue == null) {
                 throw new Exception("Shit!");
-            }
-            else {
+            } else {
                 return queue.getLast();
             }
         }
@@ -183,8 +173,7 @@ public class MultiPutBlockingBoundedQueueImpl<T> implements MultiPutBlockingBoun
         synchronized (lock) {
             if (queue == null || queue.size() > capacity) {
                 throw new Exception("Shit!");
-            }
-            else {
+            } else {
                 queue.add(obj);
             }
         }
@@ -194,8 +183,7 @@ public class MultiPutBlockingBoundedQueueImpl<T> implements MultiPutBlockingBoun
         synchronized (lock) {
             if (queue == null) {
                 throw new Exception("Shit!");
-            }
-            else {
+            } else {
                 queue.addAll(objs);
                 capacity = queue.size();
             }

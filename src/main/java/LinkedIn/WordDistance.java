@@ -54,8 +54,7 @@ public class WordDistance {
                 if (currentWord.equalsIgnoreCase(word)) {
 // Update start position
                     startIndex = i;
-                }
-                else {
+                } else {
 // Other word: pair found. Compute distance and reset
                     int distance = i - startIndex;
                     if (distance < minDist) {
@@ -100,8 +99,7 @@ public class WordDistance {
             minDist = Math.min(minDist, Math.abs(indexOne - indexTwo));
             if (indexOne < indexTwo) {
                 idxOne += 1;
-            }
-            else {
+            } else {
                 idxTwo += 1;
             } // increment the lower
         }

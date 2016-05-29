@@ -22,38 +22,29 @@ public class NumberInSortedList {
                 if (targetValue > list[mid]) {
                     if (targetValue > list[end]) {
                         end = mid - 1;
-                    }
-                    else if (targetValue < list[end]) {
+                    } else if (targetValue < list[end]) {
                         start = mid + 1;
-                    }
-                    else {
+                    } else {
                         return end;
                     }
-                }
-                else if (targetValue < list[mid]) {
+                } else if (targetValue < list[mid]) {
                     end = mid - 1;
-                }
-                else {
+                } else {
                     return mid;
                 }
-            }
-            else {
+            } else {
                 // 345 6 7012
                 if (targetValue > list[mid]) {
                     start = mid + 1;
-                }
-                else if (targetValue < list[mid]) {
+                } else if (targetValue < list[mid]) {
                     if (targetValue > list[end]) {
                         end = mid - 1;
-                    }
-                    else if (targetValue < list[end]) {
+                    } else if (targetValue < list[end]) {
                         start = mid + 1;
-                    }
-                    else {
+                    } else {
                         return end;
                     }
-                }
-                else {
+                } else {
                     return mid;
                 }
             }
