@@ -39,34 +39,33 @@ public class MinimumWindowSubstring {
                 if (record == -1) {
                     records.put(c, end);
                     count++;
+                    System.out.println(String.format("count=%d, begin=%d, end=%d", count, begin, end));
                 } else {
                     begin = record + 1;
                     while (!records.containsKey(s.charAt(begin))) {
                         begin++;
+                        System.out.println(String.format("count=%d, begin=%d, end=%d", count, begin, end));
                     }
                     for (char r : records.keySet()) {
                         if (records.get(r) < begin) {
                             records.put(r, -1);
                             count--;
+                            System.out.println(String.format("count=%d, begin=%d, end=%d", count, begin, end));
                         }
                     }
                     records.put(c, end);
-                    count--;
+                    count++;
+                    System.out.println(String.format("count=%d, begin=%d, end=%d", count, begin, end));
                 }
             }
             System.out.println(records.toString());
-            System.out.println(String.format("count=%d, all=%d", count, all));
+            System.out.println(String.format("count=%d, begin=%d, end=%d", count, begin, end));
             if (count == all) {
                 if (end - begin + 1 <= min) {
                     res = s.substring(begin, end + 1);
                 }
             }
             end++;
-        }
-        if (count == all) {
-            if (end - begin + 1 <= min) {
-                res = s.substring(begin, end + 1);
-            }
         }
         return res;
     }
