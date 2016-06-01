@@ -59,4 +59,16 @@ public class RoutingGraph {
         if (test3(srcId, destId)) return 3;
         return -1;
     }
+
+    /**
+     * Follow up:
+     * What algorithmic improvements can you get if you have an extra method
+     * that can return you a 2nd degree in constant time?
+     * Explain that a second degree is a flattened,
+     * sorted array of all the people you could reach through one of your connections.
+     */
+    int[] getSecondDegree(int memberId) {
+        // Returns a sorted list of memberId's second degree connections.
+        return new int[0];
+    }
 }
