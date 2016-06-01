@@ -1,7 +1,6 @@
 package LinkedIn;
 
 import java.util.Arrays;
-import java.util.EnumSet;
 
 public class BinarySearch {
     public static void main(String[] argv) {

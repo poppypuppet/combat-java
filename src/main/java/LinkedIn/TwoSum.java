@@ -7,6 +7,8 @@ import java.util.TreeSet;
 
 public class TwoSum {
     private Set<Integer> data = new HashSet<>();
+    /* TreeSet为基本操作(add、remove 和 contains)提供受保证的 log(n) 时间开销。*/
+    private Set<Integer> nums = new TreeSet<>();
 
     public void store(int input) {
         data.add(input);
@@ -26,9 +28,6 @@ public class TwoSum {
         }
         return false;
     }
-
-    /* TreeSet为基本操作(add、remove 和 contains)提供受保证的 log(n) 时间开销。*/
-    private Set<Integer> nums = new TreeSet<>();
 
     public boolean ThreeSum(int sum) {
         ArrayList<Integer> arr = new ArrayList<>(nums);

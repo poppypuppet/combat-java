@@ -1,9 +1,9 @@
 package LinkedIn;
 
+import com.sun.istack.internal.NotNull;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import com.sun.istack.internal.NotNull;
 
 /**
  * Given a nested list of integers, returns the sum of all integers in the list weighted by their depth
@@ -12,6 +12,10 @@ import com.sun.istack.internal.NotNull;
  * Given the list {1,{4,{6}}} the function should return 27 (one 1 at depth 1, one 4 at depth 2, and *one 6 at depth 3)
  */
 class NestedListWeightSum {
+    // global variables to avoid complicated recursion return value
+    int unweightedSum;
+    int maxLevel;
+
     public int depthSum(@NotNull List<NestedInteger> input) {
         return depthSumDFS(input, 1);
     }
@@ -86,10 +90,6 @@ class NestedListWeightSum {
         }
         return sum;
     }
-
-    // global variables to avoid complicated recursion return value
-    int unweightedSum;
-    int maxLevel;
 
     public int reverseDepthSumOneTraversal(List<NestedInteger> input) {
         if (input == null || input.isEmpty()) {

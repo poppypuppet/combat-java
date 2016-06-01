@@ -57,6 +57,9 @@ public class MultiPutBlockingBoundedQueueImpl<T> implements MultiPutBlockingBoun
     private Lock _writerLock;
     private Condition _notEmpty;
     private Condition _notFull;
+    private LinkedList<T> queue = null;
+    private int capacity;
+    private Object lock = new Object();
 
     @Override
     public void init(int capacity) throws Exception {
@@ -144,11 +147,6 @@ public class MultiPutBlockingBoundedQueueImpl<T> implements MultiPutBlockingBoun
             _writerLock.unlock();
         }
     }
-
-    private LinkedList<T> queue = null;
-    private int capacity;
-    private Object lock = new Object();
-
 
     public void init_sync(int capacity) throws Exception {
         if (queue != null || capacity < 0) {

@@ -19,6 +19,17 @@ import java.util.LinkedList;
 public class HeapSort {
     private LinkedList<Comparable> heap = new LinkedList<>();
 
+    public static void main(String[] argv) {
+        Comparable[] a = {7, 5, 2, 64, 8, 65, 43, 26, 89, 16, 28, 32, 654, 4, 9, 0, 1};
+        HeapSort hs = new HeapSort();
+        hs.add2Heap(a);
+        hs.add2Heap(3);
+        System.out.println(hs.getHeap().toString());
+        hs.sort();
+        System.out.println(hs.getHeap().toString());
+        hs.clearHeap();
+    }
+
     public void clearHeap() {
         heap.clear();
     }
@@ -74,16 +85,5 @@ public class HeapSort {
             swap(start, end--);
             heapify(start, end);
         }
-    }
-
-    public static void main(String[] argv) {
-        Comparable[] a = {7, 5, 2, 64, 8, 65, 43, 26, 89, 16, 28, 32, 654, 4, 9, 0, 1};
-        HeapSort hs = new HeapSort();
-        hs.add2Heap(a);
-        hs.add2Heap(3);
-        System.out.println(hs.getHeap().toString());
-        hs.sort();
-        System.out.println(hs.getHeap().toString());
-        hs.clearHeap();
     }
 }

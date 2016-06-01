@@ -33,6 +33,14 @@ public class TextFile implements Iterable<String> {
         this.fileName = fileName;
     }
 
+    public static void main(String[] args) {
+        for (String fileName : args) {
+            for (String line : new TextFile(fileName)) {
+                System.out.println(line);
+            }
+        }
+    }
+
     /**
      * Begin reading the file, line by line. The returned Iterator.next() will return a line.
      * remove() will throw UnsupportedOperationException.
@@ -75,14 +83,6 @@ public class TextFile implements Iterable<String> {
             String line = nextLine;
             nextLine = null;
             return line;
-        }
-    }
-
-    public static void main(String[] args) {
-        for (String fileName : args) {
-            for (String line : new TextFile(fileName)) {
-                System.out.println(line);
-            }
         }
     }
 }

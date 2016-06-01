@@ -30,15 +30,28 @@ import java.util.Map;
 
 public class WordDistance {
     private List<String> words;
+    // INCREASE
+    private Map<String, List<Integer>> index;
+
+    public WordDistance(List<String> words) {
+        this.words = words;
+    }
+
+    public WordDistance(List<String> words, boolean hard) {
+        index = new HashMap<String, List<Integer>>();
+        for (int i = 0; i < words.size(); i++) {
+            String word = words.get(i);
+            if (!index.containsKey(word)) {
+                index.put(word, new LinkedList<Integer>());
+            }
+            index.get(word).add(i); // Helpfully adds to the end of the list, so they are in }
+        }
+    }
 
     public static void main(String argv[]) {
         WordDistance finder = new WordDistance(Arrays.asList("the", "sort", "brown", "fox", "sort"));
         assert (finder.distance("fox", "the") == 3);
         assert (finder.distance("sort", "fox") == 1);
-    }
-
-    public WordDistance(List<String> words) {
-        this.words = words;
     }
 
     public int distance(String wordOne, String wordTwo) {
@@ -66,21 +79,6 @@ public class WordDistance {
             }
         }
         return minDist; // returns MAX_INT if either word is not present in the corpus.
-    }
-
-
-    // INCREASE
-    private Map<String, List<Integer>> index;
-
-    public WordDistance(List<String> words, boolean hard) {
-        index = new HashMap<String, List<Integer>>();
-        for (int i = 0; i < words.size(); i++) {
-            String word = words.get(i);
-            if (!index.containsKey(word)) {
-                index.put(word, new LinkedList<Integer>());
-            }
-            index.get(word).add(i); // Helpfully adds to the end of the list, so they are in }
-        }
     }
 
     public int distanceHARD(String wordOne, String wordTwo) {
