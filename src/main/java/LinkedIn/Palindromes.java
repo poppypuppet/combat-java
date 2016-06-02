@@ -9,15 +9,9 @@ import java.util.Set;
 import java.util.TreeMap;
 
 public class Palindromes {
-    // The map that will contain the location of each characters in the string
-    private Map<Character, List<Integer>> _charIdxMap;
-    // The map below will contains the list of palindromes of the string
-    private Map<String, List<String>> _palindromeMap;
-
     public static void main(String[] argv) {
         Palindromes p = new Palindromes();
-        System.out.println(p.findContinuesPalindromes("abcbarra"));
-        System.out.println(p.findPalindromes("abcbrta"));
+        System.out.println(p.findPalindromes("abcbrtrar"));
     }
 
     public Set<String> findContinuesPalindromes(String s) {
@@ -51,6 +45,8 @@ public class Palindromes {
         for (int i = 0; i < len; i++) {
             Character currChar = s.charAt(i);
             String single = s.substring(i, i + 1);
+            System.out.println("START " + single + " " + i);
+            // all possible location for this char
             List<Integer> charLocList = charLocMap.get(currChar);
             if (charLocList == null) {
                 // The first time this character was met
@@ -67,16 +63,17 @@ public class Palindromes {
                     Integer headLoc = entry.getValue();
                     // a new palindrome is possible if the head of the existing palindrome
                     // is behind the first location of this character
-                    System.out.println("oldPalindrome=" + oldPalindrome + " headLoc=" + headLoc);
+                    System.out.println("oldPalindrome=" + oldPalindrome + " headLoc=" + headLoc + " charLocList=" + charLocList.toString());
                     if (headLoc > charLocList.get(0)) {
                         // this is a new palindrome
                         String newPalindrome = single + oldPalindrome + single;
                         // find out the latest location of head of this new palindrome
                         // It is the biggest possible location that is smaller than headLoc
-                        // Binary search can be used because the location is always added from
-                        // small to big to the list
+                        // Binary search can be used because the location is always added from small to big to the list
+                        // The map below will contain all palindromes sequences and the latest location of its head
                         newWordLocMap.put(newPalindrome, findLoc(charLocList, headLoc));
-                        System.out.println("newWordLocMap " + newPalindrome + " " + newWordLocMap.get(newPalindrome));
+                        System.out.println(String.format("leadLoc=%d > charLockList[0]=%d, put {%s, find(%s,%s)=%d}",
+                                headLoc, charLocList.get(0), newPalindrome, charLocList.toString(), headLoc, newWordLocMap.get(newPalindrome)));
                     }
                 }
                 // adding all new palindromes
@@ -86,13 +83,16 @@ public class Palindromes {
                 for (int j = charLocList.size() - 1; j >= 0; j--) {
                     sameCharString = sameCharString + single;
                     wordLocMap.put(sameCharString, charLocList.get(j));
-                    System.out.println("wordLocMap " + wordLocMap + wordLocMap.get(sameCharString).toString());
+                    System.out.println(String.format("add same char string %s=%s", sameCharString, charLocList.get(0)));
                 }
+                System.out.println(wordLocMap.toString());
             }
             // This new character is a palindrome itself
             wordLocMap.put(single, new Integer(i));
             // add a new location of this character
             charLocList.add(new Integer(i));
+            System.out.println(String.format("add single char string %s=%d", single, i));
+            System.out.println(wordLocMap.toString());
         }
         // The map contains all palindrome sequences
         System.out.println(wordLocMap.toString());
@@ -114,6 +114,12 @@ public class Palindromes {
         }
         return (hi < 0) ? charLocList.get(0) : charLocList.get(hi);
     }
+
+
+    // The map that will contain the location of each characters in the string
+    private Map<Character, List<Integer>> _charIdxMap;
+    // The map below will contains the list of palindromes of the string
+    private Map<String, List<String>> _palindromeMap;
 
     public Set<String> findPalindromesHard(String s) {
         Set<String> result = new HashSet<String>();
