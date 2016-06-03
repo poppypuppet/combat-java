@@ -108,9 +108,7 @@ public class Window {
         }
     }
 
-    // get a message given a key. If the message does not exist or message is older than the window
-    // it's *important* to be correct
-
+    // get a message given a key. If the message does not exist or message is older than t
     public Msg getMsg(long key) {
         Long value = values.get(key);
         if (value == null) {
