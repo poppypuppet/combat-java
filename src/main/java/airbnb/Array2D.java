@@ -1,4 +1,4 @@
-package airbnb;
+package Airbnb;
 
 import java.util.ArrayList;
 import java.util.Arrays;
