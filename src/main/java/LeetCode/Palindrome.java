@@ -1,11 +1,6 @@
 package LeetCode;
 
 public class Palindrome {
-    public static void main(String[] argv) {
-        Palindrome p = new Palindrome();
-        System.out.println(p.isPalindrome("ab2a"));
-        System.out.println(p.isPalindrome(11));
-    }
 
     /**
      * Valid Palindrome
