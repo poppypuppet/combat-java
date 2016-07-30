@@ -1,5 +1,10 @@
 package LeetCode;
 
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  * Palindrome Pairs   My Submissions QuestionEditorial Solution
  * Total Accepted: 4197 Total Submissions: 21482 Difficulty: Hard
@@ -24,4 +29,61 @@ package LeetCode;
  * 3.2) 若right为回文，并且left的逆序串在words中，则将left的逆序串下标idx与rlidx加入答案
  */
 public class PalindromePairs {
+    public static void main(String[] argv) {
+        String[] words = {"abcd", "dcba", "lls", "s", "sssll"};
+        PalindromePairs pp = new PalindromePairs();
+        System.out.println(pp.palindromePairs(words));
+    }
+
+    public List<List<Integer>> palindromePairs(String[] words) {
+        HashMap<String, Integer> dict = new HashMap<>();
+        for (int i = 0; i < words.length; i++) {
+            dict.put(words[i], i);
+        }
+        List<List<Integer>> ans = new LinkedList<>();
+        for (String word : words) {
+            if (isPalindrome(word) && dict.containsKey("")) {
+                if (dict.get(word) != dict.get("")) {
+                    ans.add(Arrays.asList(dict.get(word), dict.get("")));
+                    ans.add(Arrays.asList(dict.get(""), dict.get(word)));
+                }
+            }
+            StringBuilder sb = new StringBuilder(word);
+            String reverseWord = sb.reverse().toString();
+            if (dict.containsKey(reverseWord)) {
+                if (dict.get(word) != dict.get(reverseWord)) {
+                    ans.add(Arrays.asList(dict.get(word), dict.get(reverseWord)));
+                }
+            }
+            for (int i = 1; i < word.length(); i++) {
+                String left = word.substring(0, i);
+                String right = word.substring(i);
+                sb.setLength(0); // clear
+                sb.append(left);
+                String rleft = sb.reverse().toString();
+                sb.setLength(0); // clear
+                sb.append(right);
+                String rright = sb.reverse().toString();
+                if (isPalindrome(left) && dict.containsKey(rright)) {
+                    ans.add(Arrays.asList(dict.get(rright), dict.get(word)));
+                }
+                if (isPalindrome(right) && dict.containsKey(rleft)) {
+                    ans.add(Arrays.asList(dict.get(word), dict.get(rleft)));
+                }
+            }
+        }
+        return ans;
+    }
+
+    public boolean isPalindrome(String word) {
+        int n = word.length();
+        if (n > 1) {
+            for (int i = 0, j = n - 1; i < j; i++, j--) {
+                if (word.charAt(i) != word.charAt(j)) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 }
