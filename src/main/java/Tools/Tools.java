@@ -1,5 +1,7 @@
 package Tools;
 
+import Interface.ListNode;
+
 public class Tools {
     public static void println(Object[][] objs) {
         for (int i = 0; i < objs.length; i++) {
@@ -9,5 +11,14 @@ public class Tools {
             }
             System.out.println();
         }
+    }
+
+    public static void println(ListNode n) {
+        while (n != null) {
+            System.out.print(n.val);
+            System.out.print(" ");
+            n = n.next;
+        }
+        System.out.println();
     }
 }
