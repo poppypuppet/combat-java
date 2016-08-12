@@ -3,6 +3,8 @@ package LinkedIn;
 import java.util.HashMap;
 import java.util.Map;
 
+import Interface.DoubleListNode;
+
 /**
  * LRU Cache
  * Design and implement a data structure for Least Recently Used (LRU) cache.
@@ -15,20 +17,20 @@ import java.util.Map;
 
 public class LRUCache {
     private final int capacity;
-    private ListNode begin;
-    private ListNode end;
-    private Map<Integer, ListNode> index;
+    private DoubleListNode begin;
+    private DoubleListNode end;
+    private Map<Integer, DoubleListNode> index;
 
     public LRUCache(int capacity) {
         this.capacity = capacity;
         index = new HashMap<>();
-        begin = new ListNode(-1, -1, null, end);
-        end = new ListNode(-1, -1, begin, null);
+        begin = new DoubleListNode(-1, -1, null, end);
+        end = new DoubleListNode(-1, -1, begin, null);
     }
 
     public int get(int key) {
         if (index.containsKey(key)) {
-            ListNode n = index.get(key);
+            DoubleListNode n = index.get(key);
             remove(n);
             add(n);
             return n.value;
@@ -37,9 +39,21 @@ public class LRUCache {
         }
     }
 
+    private void remove(DoubleListNode n) {
+        n.prev.next = n.next;
+        n.next.prev = n.prev;
+    }
+
+    private void add(DoubleListNode n) {
+        end.prev.next = n;
+        n.prev = end.prev;
+        n.next = end;
+        end.prev = n;
+    }
+
     public void set(int key, int value) {
         if (index.containsKey(key)) {
-            ListNode n = index.get(key);
+            DoubleListNode n = index.get(key);
             n.value = value;
             remove(n);
             add(n);
@@ -48,21 +62,9 @@ public class LRUCache {
                 index.remove(begin.next.key);
                 remove(begin.next);
             }
-            ListNode n = new ListNode(key, value);
+            DoubleListNode n = new DoubleListNode(key, value);
             add(n);
             index.put(key, n);
         }
-    }
-
-    private void remove(ListNode n) {
-        n.prev.next = n.next;
-        n.next.prev = n.prev;
-    }
-
-    private void add(ListNode n) {
-        end.prev.next = n;
-        n.prev = end.prev;
-        n.next = end;
-        end.prev = n;
     }
 }

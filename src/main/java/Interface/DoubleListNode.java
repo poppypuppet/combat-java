@@ -1,19 +1,19 @@
-package LinkedIn;
+package Interface;
 
-public class ListNode {
-    public ListNode prev;
-    public ListNode next;
+public class DoubleListNode {
+    public DoubleListNode prev;
+    public DoubleListNode next;
     public int key;
     public int value;
 
-    public ListNode(int key, int value) {
+    public DoubleListNode(int key, int value) {
         this.key = key;
         this.value = value;
         this.prev = null;
         this.next = null;
     }
 
-    public ListNode(int key, int value, ListNode prev, ListNode next) {
+    public DoubleListNode(int key, int value, DoubleListNode prev, DoubleListNode next) {
         this.key = key;
         this.value = value;
         this.prev = prev;
