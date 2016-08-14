@@ -1,15 +1,16 @@
 package LeetCode;
 
+import Interface.ListNode;
+import Tools.Tools;
+
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
-import Interface.ListNode;
-import Tools.Tools;
-
 public class MergeKSortedLists {
+
     /**
      * java.lang.Comparable: int compareTo(Object o1)
      * 这个方法用于当前对象与o1对象做对比，返回int值，分别的意思是：
@@ -26,12 +27,10 @@ public class MergeKSortedLists {
         if (left == null) {
             // 左边没有,选择右边
             return 1;
-        }
-        else if (right == null) {
+        } else if (right == null) {
             // 右边没有,选择左边
             return -1;
-        }
-        else {
+        } else {
             // 正数,选择左边
             return left.val - right.val;
         }
@@ -64,39 +63,16 @@ public class MergeKSortedLists {
         return ans.next;
     }
 
-    private ListNode mergeDevideAndConquer(List<ListNode> lists, int start, int end) {
+    private ListNode mergeDivideAndConquer(List<ListNode> lists, int start, int end) {
         if (start == end) {
             return lists.get(start);
         }
 
         int mid = start + (end - start) / 2;
-        ListNode left = mergeDevideAndConquer(lists, start, mid);
-        ListNode right = mergeDevideAndConquer(lists, mid + 1, end);
-        return mergeTwoLists(left, right);
+        ListNode left = mergeDivideAndConquer(lists, start, mid);
+        ListNode right = mergeDivideAndConquer(lists, mid + 1, end);
+        Merge2SortedLists m = new Merge2SortedLists();
+        return m.mergeTwoLists(left, right);
     }
 
-    private ListNode mergeTwoLists(ListNode list1, ListNode list2) {
-        ListNode dummy = new ListNode(0);
-        ListNode tail = dummy;
-        while (list1 != null && list2 != null) {
-            if (list1.val < list2.val) {
-                tail.next = list1;
-                tail = list1;
-                list1 = list1.next;
-            }
-            else {
-                tail.next = list2;
-                tail = list2;
-                list2 = list2.next;
-            }
-        }
-        if (list1 != null) {
-            tail.next = list1;
-        }
-        else {
-            tail.next = list2;
-        }
-
-        return dummy.next;
-    }
 }
