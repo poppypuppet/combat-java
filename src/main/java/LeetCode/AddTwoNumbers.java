@@ -21,8 +21,7 @@ public class AddTwoNumbers {
             if (sum > 9) {
                 carry = 1;
                 sum -= 10;
-            }
-            else {
+            } else {
                 carry = 0;
             }
             pin.next = new ListNode(sum);
@@ -35,8 +34,7 @@ public class AddTwoNumbers {
             if (sum > 9) {
                 carry = 1;
                 sum -= 10;
-            }
-            else {
+            } else {
                 carry = 0;
             }
             pin.next = new ListNode(sum);
@@ -48,8 +46,7 @@ public class AddTwoNumbers {
             if (sum > 9) {
                 carry = 1;
                 sum -= 10;
-            }
-            else {
+            } else {
                 carry = 0;
             }
             pin.next = new ListNode(sum);
