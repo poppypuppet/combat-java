@@ -14,7 +14,7 @@ import java.util.Arrays;
  * What if the list was an infinite stream, and you needed to report the maximum sum/product so far?
  * (IE each list element may have multiple 'next' elements, and there may be loops)
  * What if you were given a directed graph
- * Take in a goal value and return true if you can find a contiguous sum/product with that value,and false otherwise.
+ * Take in a goal val and return true if you can find a contiguous sum/product with that val,and false otherwise.
  * Sum is probably more difficult than product in this case.
  * Interviewer tips: Solutions to both should be linear, ideally single pass for both.
  * Be prepared to provide sample inputs to help candidates out, particularly in cases like all negative lists.

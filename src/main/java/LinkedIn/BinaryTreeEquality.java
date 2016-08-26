@@ -11,6 +11,6 @@ public class BinaryTreeEquality {
         if (a == null || b == null) {
             return false;
         }
-        return (a.equals(b.value) && compare(a.left, b.left) && compare(a.right, b.right));
+        return (a.equals(b.val) && compare(a.left, b.left) && compare(a.right, b.right));
     }
 }

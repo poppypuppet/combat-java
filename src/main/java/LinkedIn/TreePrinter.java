@@ -28,7 +28,7 @@ public class TreePrinter {
                 out.println();
                 curr = level;
             }
-            out.print(n.value);
+            out.print(n.val);
             if (n.left != null) {
                 q.offer(new SimpleEntry(n.left, curr + 1));
             }
@@ -59,7 +59,7 @@ public class TreePrinter {
                 reverse = !reverse;
                 level.clear();
             }
-            level.add(treeNode.value);
+            level.add(treeNode.val);
             if (treeNode.left != null) {
                 q.offer(new SimpleEntry(treeNode.left, curr_level + 1));
             }

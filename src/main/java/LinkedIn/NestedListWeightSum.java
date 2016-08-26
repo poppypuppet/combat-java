@@ -12,7 +12,7 @@ import java.util.List;
  * Given the list {1,{4,{6}}} the function should return 27 (one 1 at depth 1, one 4 at depth 2, and *one 6 at depth 3)
  */
 class NestedListWeightSum {
-    // global variables to avoid complicated recursion return value
+    // global variables to avoid complicated recursion return val
     int unweightedSum;
     int maxLevel;
 

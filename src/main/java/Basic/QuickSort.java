@@ -49,7 +49,7 @@ public class QuickSort {
         while (left < right) {
             // left 即为 mid 潜在可能坐标,
             System.out.println("left right " + a[left] + " " + a[right]);
-            // 如果a[left] < value, 说明 left 此时所指的值应该在 mid 左边
+            // 如果a[left] < val, 说明 left 此时所指的值应该在 mid 左边
             if (a[left].compareTo(value) < 0) {
                 // 交换 left 和 mid, 将 mid 后推一位.
                 swap(a, mid, left);
