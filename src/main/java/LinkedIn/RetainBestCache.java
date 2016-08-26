@@ -1,7 +1,5 @@
 package LinkedIn;
 
-import Interface.DataSource;
-
 /**
  * Followup questions:
  * If a Rankable's rank is defined as it's last access time, the retain-best cache becomes an LRU cache.

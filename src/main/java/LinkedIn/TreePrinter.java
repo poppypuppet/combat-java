@@ -1,5 +1,7 @@
 package LinkedIn;
 
+import Interface.TreeNode;
+
 import java.io.PrintStream;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;

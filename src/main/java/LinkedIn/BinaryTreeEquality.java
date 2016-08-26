@@ -1,8 +1,11 @@
 package LinkedIn;
 
+import Interface.TreeNode;
+
 public class BinaryTreeEquality {
     public boolean compare(TreeNode a, TreeNode b) {
-        if (a == b) { // both null, or the same object
+        if (a == b) {
+            // both null, or the same object
             return true;
         }
         if (a == null || b == null) {
