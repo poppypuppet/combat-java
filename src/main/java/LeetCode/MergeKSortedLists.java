@@ -1,7 +1,7 @@
 package LeetCode;
 
 import Interface.ListNode;
-import Tools.Tools;
+import Tools.Printer;
 
 import java.util.Arrays;
 import java.util.Comparator;
@@ -39,7 +39,7 @@ public class MergeKSortedLists {
     public static void main(String[] argv) {
         MergeKSortedLists m = new MergeKSortedLists();
         ListNode[] lists = {new ListNode(1), new ListNode(3), new ListNode(2), new ListNode(4)};
-        Tools.println(m.mergeKLists(lists));
+        Printer.println(m.mergeKLists(lists));
     }
 
     public ListNode mergeKLists(ListNode[] lists) {

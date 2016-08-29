@@ -1,6 +1,6 @@
 package LeetCode;
 
-import Tools.Tools;
+import Tools.Printer;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -32,7 +32,7 @@ public class ThreeSum {
         Set<List<Integer>> ans = new HashSet<>();
         if (n > 2) {
             Arrays.sort(nums);
-            Tools.println(nums);
+            Printer.println(nums);
             for (int i = 0; i < n - 2; i++) {
                 int j = i + 1;
                 int k = n - 1;

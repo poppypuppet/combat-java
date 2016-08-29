@@ -1,5 +1,7 @@
 package LeetCode;
 
+import Tools.Printer;
+
 /**
  * According to the Wikipedia's article: "The Game of Life, also known simply as Life, is a cellular automaton devised by the British mathematician John Horton Conway in 1970."
  * Given a board with m by n cells, each cell has an initial state live (1) or dead (0). Each cell interacts with its eight neighbors (horizontal, vertical, diagonal) using the following four rules (taken from the above Wikipedia article):
@@ -23,7 +25,7 @@ public class GameOfLive {
         GameOfLive gol = new GameOfLive();
         Integer[][] board = {{1}};
         gol.gameOfLife(board);
-        Tools.Tools.println(board);
+        Printer.println(board);
     }
 
     /**

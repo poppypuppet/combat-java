@@ -2,7 +2,7 @@ package Tools;
 
 import Interface.ListNode;
 
-public class Tools {
+public class Printer {
     public static void println(Object[] objs) {
         for (int i = 0; i < objs.length; i++) {
             System.out.print(objs[i]);
