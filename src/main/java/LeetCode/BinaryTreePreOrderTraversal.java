@@ -17,18 +17,18 @@ public class BinaryTreePreOrderTraversal {
     // root->left->right
     public List<Integer> preOrderTraversal(TreeNode root) {
         List<Integer> ans = new LinkedList<>();
-        Stack<TreeNode> cache = new Stack<>();
+        Stack<TreeNode> stack = new Stack<>();
         if (root != null) {
-            cache.add(root);
+            stack.add(root);
         }
-        while (!cache.empty()) {
-            TreeNode n = cache.pop();
+        while (!stack.empty()) {
+            TreeNode n = stack.pop();
             ans.add(n.val);
             if (n.right != null) {
-                cache.add(n.right);
+                stack.add(n.right);
             }
             if (n.left != null) {
-                cache.add(n.left);
+                stack.add(n.left);
             }
         }
         return ans;
