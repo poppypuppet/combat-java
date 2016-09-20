@@ -14,12 +14,12 @@ package LeetCode;
 public class CoinChange {
     /**
      * 动态规划
-     * dp，设dp[i] 为兑换目标i最少的硬币数。
-     * 则有：dp[i + coins[j] ] = min(dp[i + coins[j] ] , dp[i] + 1）
-     * 说白了就是用当前的硬币能组合成啥，取最小。
+     * dp,设dp[i] 为兑换目标i最少的硬币数.
+     * 则有:dp[i + coins[j] ] = min(dp[i + coins[j] ] , dp[i] + 1）
+     * 说白了就是用当前的硬币能组合成啥,取最小.
      * dp[i] = min(dp[i], dp[i - coins[j]] + 1);
-     * 其中coins[j]为第j个硬币，而i - coins[j]为钱数i减去其中一个硬币的值，剩余的钱数在dp数组中找到值，
-     * 然后加1和当前dp数组中的值做比较，取较小的那个更新dp数组。
+     * 其中coins[j]为第j个硬币,而i - coins[j]为钱数i减去其中一个硬币的值,剩余的钱数在dp数组中找到值,
+     * 然后加1和当前dp数组中的值做比较,取较小的那个更新dp数组.
      */
     public static void main(String[] argv) {
         CoinChange c = new CoinChange();

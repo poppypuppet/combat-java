@@ -19,7 +19,7 @@ import java.util.LinkedList;
  */
 public class KthSmallestElementBST {
     /**
-     * 采用中序遍历（左 -> 根 -> 右）即可以递增顺序访问BST中的节点，时间复杂度O(k)
+     * 采用中序遍历（左 -> 根 -> 右）即可以递增顺序访问BST中的节点,时间复杂度O(k)
      */
     public int kthSmallest(TreeNode root, int k) {
         LinkedList<TreeNode> stack = new LinkedList<>();

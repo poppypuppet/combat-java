@@ -13,12 +13,12 @@ public class MergeKSortedLists {
 
     /**
      * java.lang.Comparable: int compareTo(Object o1)
-     * 这个方法用于当前对象与o1对象做对比，返回int值，分别的意思是：
+     * 这个方法用于当前对象与o1对象做对比,返回int值,分别的意思是:
      * positive – 当前对象大于o1
      * zero – 当前对象等于o1
      * negative – 当前对象小于o1
      * java.util.Comparator: int compare(Object o1, Object2)
-     * 这个方法用于o1与o2对象做对比，返回int值，分别的意思是：
+     * 这个方法用于o1与o2对象做对比,返回int值,分别的意思是:
      * positive – o1大于o2
      * zero – o1等于o2
      * negative – o1小于o2

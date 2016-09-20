@@ -16,7 +16,7 @@ import java.util.Arrays;
  * two with no more than 3 citations each, his h-index is 3.
  * <p>
  * 1、将其发表的所有SCI论文按被引次数从高到低排序；
- * 2、从前往后查找排序后的列表，直到某篇论文的序号大于该论文被引次数。所得序号减一即为H指数。
+ * 2、从前往后查找排序后的列表,直到某篇论文的序号大于该论文被引次数.所得序号减一即为H指数.
  */
 public class HIndex {
     public static void main(String[] argv) {

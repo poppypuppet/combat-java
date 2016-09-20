@@ -11,8 +11,8 @@ public class DifferentWaysToAddParentheses {
 
     /**
      * 这题就是分治法 - Divide and Conquer
-     * 在递归的过程中，根据符号位，不断将一个字符串分成两个子串，
-     * 然后将两个子串的结果merge起来。
+     * 在递归的过程中,根据符号位,不断将一个字符串分成两个子串,
+     * 然后将两个子串的结果merge起来.
      */
     public List<Integer> diffWaysToCompute(String input) {
         List<Integer> ans = new LinkedList<>();

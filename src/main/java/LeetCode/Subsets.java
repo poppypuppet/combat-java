@@ -19,6 +19,7 @@ public class Subsets {
         return ans;
     }
 
+    // 这个和permutation的区别是这个不能往回走,所以每次从start开始就可以.
     private void subSetsDfs(int start, LinkedList<Integer> line, List<List<Integer>> ans, int[] nums) {
         ans.add(new ArrayList<>(line));
         for (int i = start; i < nums.length; i++) {
