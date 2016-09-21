@@ -1,5 +1,8 @@
 package LeetCode;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Given a 2D board and a word, find if the word exists in the grid.
  * The word can be constructed from letters of sequentially adjacent cell, where "adjacent" cells are those horizontally or vertically neighboring. The same letter cell may not be used more than once.
@@ -60,5 +63,21 @@ public class WordSearch {
             board[x][y] = c;
         }
         return false;
+    }
+
+    /**
+     * 解题思路：
+     * 将待查找的单词储存在字典树Trie中，使用DFS（深度优先搜索）在格板中查找，利用字典树剪枝。
+     * 每当找到一个单词时，将该单词从字典树中删去。
+     * 返回结果按照字典序递增排列。
+     * 哈希表在此题中不适用，因为单词前缀的存储会消耗大量的空间。
+     */
+    public List<String> findWords(char[][] board, String[] words) {
+        List<String> ans = new ArrayList<>(words.length);
+        if (words.length < 1) {
+            return ans;
+        }
+
+        TrieNode root = new TrieNode();
     }
 }
