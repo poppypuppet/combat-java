@@ -3,7 +3,7 @@ package LeetCode;
 import Interface.TrieNode;
 
 public class Trie {
-    private TrieNode root;
+    public TrieNode root;
 
     public Trie() {
         root = new TrieNode();
@@ -23,16 +23,20 @@ public class Trie {
     }
 
     // Returns if the word is in the trie.
-    public boolean search(String word) {
+    public TrieNode search(String word) {
         TrieNode n = root;
         for (char c : word.toCharArray()) {
             int index = c - 'a';
             if (n.children[index] == null) {
-                return false;
+                return null;
             }
             n = n.children[index];
         }
-        return word.equals(n.item);
+        if (word.equals(n.item)) {
+            return n;
+        } else {
+            return null;
+        }
     }
 
     // Returns if there is any word in the trie

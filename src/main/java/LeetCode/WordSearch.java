@@ -1,5 +1,7 @@
 package LeetCode;
 
+import Interface.TrieNode;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +20,18 @@ import java.util.List;
  * word = "ABCB", -> returns false.
  */
 public class WordSearch {
+    public static void main(String[] argv) {
+        WordSearch ws = new WordSearch();
+        String[] words = {"oath", "pea", "eat", "rain"};
+        char[][] board = {
+                {'o', 'a', 'a', 'n'},
+                {'e', 't', 'a', 'e'},
+                {'i', 'h', 'k', 'r'},
+                {'i', 'f', 'l', 'v'}
+        };
+        System.out.println(ws.findWords(board, words));
+    }
+
     /**
      * 就是二维的permutation
      * 基本思路是使用DFS来对一个起点字母上下左右搜索,看是不是含有给定的Word.
@@ -78,6 +92,37 @@ public class WordSearch {
             return ans;
         }
 
-        TrieNode root = new TrieNode();
+        Trie trie = new Trie();
+        for (String word : words) {
+            trie.insert(word);
+        }
+
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[i].length; j++) {
+                searchWrodTrie(board, "", i, j, trie, ans);
+            }
+        }
+        return ans;
+    }
+
+    public void searchWrodTrie(char[][] board, String str, int x, int y, Trie trie, List<String> ans) {
+        if (x >= 0 && x < board.length && y >= 0 && y < board[x].length && board[x][y] != 0) {
+            char c = board[x][y];
+            str += c;
+            if (!trie.startsWith(str)) {
+                return;
+            }
+            TrieNode n = trie.search(str);
+            if (n != null) {
+                ans.add(str);
+                n.item = null;
+            }
+            board[x][y] = 0;
+            searchWrodTrie(board, str, x - 1, y, trie, ans);
+            searchWrodTrie(board, str, x + 1, y, trie, ans);
+            searchWrodTrie(board, str, x, y - 1, trie, ans);
+            searchWrodTrie(board, str, x, y + 1, trie, ans);
+            board[x][y] = c;
+        }
     }
 }
