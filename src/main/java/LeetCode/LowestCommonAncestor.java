@@ -16,6 +16,7 @@ import Interface.TreeNode;
  */
 public class LowestCommonAncestor {
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode node1, TreeNode node2) {
+        // if root is n1 or n2 parent node
         if (root == null || root == node1 || root == node2) {
             return root;
         }
@@ -26,14 +27,14 @@ public class LowestCommonAncestor {
 
         // Conquer
         if (left != null && right != null) {
+            // root is left and right parent node
             return root;
-        }
-        if (left != null) {
+        } else if (left != null) {
             return left;
-        }
-        if (right != null) {
+        } else if (right != null) {
             return right;
+        } else {
+            return null;
         }
-        return null;
     }
 }
