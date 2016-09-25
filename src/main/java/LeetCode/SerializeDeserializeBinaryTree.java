@@ -31,7 +31,7 @@ import java.util.LinkedList;
  */
 public class SerializeDeserializeBinaryTree {
     private static final String splitter = ",";
-    private static final String NN = "X";
+    private static final String NULL = "#";
 
     // Encodes a tree to a single string.
     public String serialize(TreeNode root) {
@@ -42,7 +42,7 @@ public class SerializeDeserializeBinaryTree {
 
     private void buildString(TreeNode node, StringBuilder sb) {
         if (node == null) {
-            sb.append(NN).append(splitter);
+            sb.append(NULL).append(splitter);
         } else {
             sb.append(node.val).append(splitter);
             buildString(node.left, sb);
@@ -59,7 +59,7 @@ public class SerializeDeserializeBinaryTree {
 
     private TreeNode buildTree(Deque<String> nodes) {
         String val = nodes.remove();
-        if (val.equals(NN)) return null;
+        if (val.equals(NULL)) return null;
         else {
             TreeNode node = new TreeNode(Integer.valueOf(val));
             node.left = buildTree(nodes);
