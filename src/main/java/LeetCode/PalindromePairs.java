@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Palindrome Pairs   My Submissions QuestionEditorial Solution
  * Total Accepted: 4197 Total Submissions: 21482 Difficulty: Hard
- * Given a list of unique words. Find all pairs of distinct indices (i, j) in the given list,
+ * Given a orders of unique words. Find all pairs of distinct indices (i, j) in the given orders,
  * so that the concatenation of the two words, i.e. words[i] + words[j] is a palindrome.
  * <p>
  * Example 1:
