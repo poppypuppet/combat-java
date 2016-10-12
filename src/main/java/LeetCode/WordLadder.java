@@ -173,4 +173,5 @@ public class WordLadder {
             this.distance = distance;
         }
     }
+
 }
