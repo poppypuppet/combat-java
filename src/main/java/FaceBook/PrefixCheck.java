@@ -21,7 +21,7 @@ public class PrefixCheck {
 
                 board[x][y] = '#';
                 for (int i = 0; i < 4; i++) {
-                    findPrefix(board, candidate, ans, x + offsetX[i], y + offsetY[i], , );
+                    findPrefix(board, candidate, ans, x + offsetX[i], y + offsetY[i], m, n);
                 }
                 board[x][y] = c;
                 candidate.setLength(candidate.length() - 1);
