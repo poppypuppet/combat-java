@@ -23,10 +23,6 @@ import Tools.Printer;
  */
 
 public class SparseMatrixMultiplication {
-    int m, n;
-    int o, p;
-
-
     public static void main(String[] argv) {
         int[][] A = {
                 {1, 0, 0},
@@ -53,9 +49,9 @@ public class SparseMatrixMultiplication {
      * 然后我们遍历B矩阵的第k行，如果B[k][j]不为0，我们累加结果矩阵res[i][j]+=A[i][k]*B[k][j];
      * 这样我们就能高效的算出稀疏矩阵的乘法
      */
-    public Integer[][] multiply(int[][] A, int[][] B) {
+    public int[][] multiply(int[][] A, int[][] B) {
         int m = A.length, n = B.length, p = B[0].length;
-        Integer[][] ans = new Integer[m][p];
+        int[][] ans = new int[m][p];
         for (int i = 0; i < m; i++)
             for (int j = 0; j < n; j++)
                 if (A[i][j] != 0)
