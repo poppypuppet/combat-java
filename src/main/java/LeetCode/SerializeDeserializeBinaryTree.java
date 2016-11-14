@@ -58,6 +58,9 @@ public class SerializeDeserializeBinaryTree {
     }
 
     private TreeNode buildTree(Deque<String> nodes) {
+        if (nodes == null || nodes.isEmpty()) {
+            return null;
+        }
         String val = nodes.remove();
         if (val.equals(NULL)) return null;
         else {
