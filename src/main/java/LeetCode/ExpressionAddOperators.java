@@ -36,26 +36,24 @@ public class ExpressionAddOperators {
         return res;
     }
 
-    private void operator(String num, int target, List<String> res, long cursum, long presum, String tmp) {
-        if (num.length() == 0 && cursum == target) {
-            res.add(tmp);
+    private void operator(String num, int target, List<String> result, long curSum, long preSum, String temp) {
+        if (num.length() == 0 && curSum == target) {
+            result.add(temp);
             return;
         }
-        for (int i = 1; i <= num.length(); i++) {
-            String front = num.substring(0, i); // [)
+        for (int i = 1; i <= num.length(); i++) { //此处是<=，而不是<
+            String front = num.substring(0, i);
             if (front.length() > 1 && front.charAt(0) == '0') {
-                // 除去多位数字以0开头的情况
                 return;
             }
             long value = Long.parseLong(front);
             String back = num.substring(i);
-            if ("".equals(tmp)) {
-                // 第一个数字,不需要考虑之前的情况
-                operator(back, target, res, cursum + value, cursum, front);
+            if (!"".equals(temp)) {
+                operator(back, target, result, curSum + value, curSum, temp + "+" + front);
+                operator(back, target, result, curSum - value, curSum, temp + "-" + front);
+                operator(back, target, result, (curSum - preSum) * value + preSum, preSum, temp + "*" + front);
             } else {
-                operator(back, target, res, cursum + value, cursum, tmp + "+" + front);
-                operator(back, target, res, cursum - value, cursum, tmp + "-" + front);
-                operator(back, target, res, (cursum - presum) * value + presum, cursum, tmp + "*" + front);
+                operator(back, target, result, curSum + value, curSum, front);
             }
         }
     }
