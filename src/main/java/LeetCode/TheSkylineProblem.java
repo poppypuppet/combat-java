@@ -70,7 +70,6 @@ public class TheSkylineProblem {
                 // 将右顶点对应的左顶点移去
                 pq.remove(h[1]);
             }
-            o
             int cur = pq.peek();
             // 如果堆的新顶部和上个keypoint高度不一样，则加入一个新的keypoint
             if (prev != cur) {
