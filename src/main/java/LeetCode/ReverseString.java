@@ -8,7 +8,7 @@ package LeetCode;
 public class ReverseString {
     public String reverseString(String s) {
         char[] arr = s.toCharArray();
-        int start = 0, end = arr.length-1;
+        int start = 0, end = arr.length - 1;
         if (end > 0) {
             while (start < end) {
                 swap(arr, start, end);

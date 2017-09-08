@@ -52,6 +52,7 @@ public class Window {
     private final Object lock;
     private ConcurrentHashMap<Long, Long> values;
     private ConcurrentLinkedQueue<Long> orders;
+
     // Define a window of a certain size in microsecond granularity
     public Window(int nMicrosecs) {
         values = new ConcurrentHashMap<>(nMicrosecs);

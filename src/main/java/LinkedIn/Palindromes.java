@@ -9,6 +9,11 @@ import java.util.Set;
 import java.util.TreeMap;
 
 public class Palindromes {
+    // The map that will contain the location of each characters in the string
+    private Map<Character, List<Integer>> _charIdxMap;
+    // The map below will contains the list of palindromes of the string
+    private Map<String, List<String>> _palindromeMap;
+
     public static void main(String[] argv) {
         Palindromes p = new Palindromes();
         System.out.println(p.findPalindromes("abcbrtrar"));
@@ -114,12 +119,6 @@ public class Palindromes {
         }
         return (hi < 0) ? charLocList.get(0) : charLocList.get(hi);
     }
-
-
-    // The map that will contain the location of each characters in the string
-    private Map<Character, List<Integer>> _charIdxMap;
-    // The map below will contains the list of palindromes of the string
-    private Map<String, List<String>> _palindromeMap;
 
     public Set<String> findPalindromesHard(String s) {
         Set<String> result = new HashSet<String>();

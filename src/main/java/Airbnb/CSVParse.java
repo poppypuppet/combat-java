@@ -22,20 +22,17 @@ Alexandra "Alex"|Menendez|alex.menendez@gmail.com|Miami|1
 */
 
 public class CSVParse {
-    public CSVParse() {
-    }
-
-    public void main(String[] args) {
+    public static void main(String[] args) {
         CSVParse parser = new CSVParse();
         //#1
         ArrayList<String> output = parser.parseCSV("John,Smith,john.smith@gmail.com,Los Angeles,1");
-        System.out.println(output.toString());
+        System.out.println(output);
         //#2
         output = parser.parseCSV("Jane,Roberts,janer@msn.com,\"San Francisco, CA\",0");
-        System.out.println(output.toString());
+        System.out.println(output);
         //#3
         output = parser.parseCSV("\"Alexandra \"\"Alex\"\"\",Menendez,alex.menendez@gmail.com,Miami,1");
-        System.out.println(output.toString());
+        System.out.println(output);
     }
 
     private ArrayList<String> parseCSV(String s) {

@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Array2D<T> {
-    private ArrayList<ArrayList<T>> data;
     Integer row;
     Integer col;
+    private ArrayList<ArrayList<T>> data;
 
     public Array2D(ArrayList<ArrayList<T>> input) {
         data = input;
