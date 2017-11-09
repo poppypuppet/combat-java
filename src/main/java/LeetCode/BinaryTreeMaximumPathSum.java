@@ -3,7 +3,7 @@ package LeetCode;
 import Interface.TreeNode;
 
 /**
- * Binary Tree Maximum Path Sum  QuestionEditorial Solution  My Submissions
+ * Binary Tree Maximum Path Sum QuestionEditorial Solution My Submissions
  * Total Accepted: 75456
  * Total Submissions: 309743
  * Difficulty: Hard

@@ -19,59 +19,6 @@ public class AddTwoNumbersII {
      * 最后还是处理最高位的进位问题。
      */
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        int d1 = getLength(l1);
-        int d2 = getLength(l2);
-        if (d2 > d1) {
-            return addTwoNumbers(l2, l1);
-        }
-        int diff = d1 - d2;
-        if (diff > 0) {
-            ListNode nl2 = new ListNode(0);
-            ListNode tail = nl2;
-            while (diff > 1) {
-                tail.next = new ListNode(0);
-                tail = tail.next;
-            }
-            tail.next = l2;
-            l2 = nl2;
-        }
-        ListNode res = null;
-        int carry = addTwoNumbersDFS(l1, l2, res);
-        if (carry != 0) {
-            ListNode newres = new ListNode(carry);
-            newres.next = res;
-            res = newres;
-        }
-        return res;
-    }
-
-    private int addTwoNumbersDFS(ListNode l1, ListNode l2, ListNode res) {
-        if (l1 == null || l2 == null) return 0;
-        int carry = addTwoNumbersDFS(l1.next, l2.next, res);
-        int sum = l1.val + l2.val + carry;
-        ListNode newres = new ListNode(sum % 10);
-        newres.next = res;
-        res = newres;
-        return sum / 10;
-    }
-
-    private int getLength(ListNode n) {
-        int count = 0;
-        while (n != null) {
-            n = n.next;
-            count++;
-        }
-        return count;
-    }
-
-    public static void main(String[] argv) {
-        int[] a1 = {7, 2, 4, 3};
-        int[] a2 = {5, 6, 4};
-        ListNode l1 = ListNode.creatList(a1);
-        ListNode.printList(l1);
-        ListNode l2 = ListNode.creatList(a2);
-        ListNode.printList(l2);
-        AddTwoNumbersII addTwoNumbersII = new AddTwoNumbersII();
-        ListNode.printList(addTwoNumbersII.addTwoNumbers(l1, l2));
+        return null;
     }
 }
