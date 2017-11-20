@@ -12,9 +12,17 @@ public class MaximumSubarray {
      * 接下来说说动态规划的递推式(这是动态规划最重要的步骤,递归式出来了,基本上代码框架也就出来了).
      * 假设我们已知第i步的global[i](全局最优)和local[i](局部最优),那么第i+1步的表达式是:
      * local[i+1]=max(nums[i], local[i]+nums[i]);
+     * global[i+1]=max(global[i],local[i+1]);
+     * 本题只需要一维
      */
     public int maxSubArray(int[] nums) {
-        return 0;
+        int global = nums[0];
+        int local = nums[0];
+        for(int i = 1;i<nums.length;i++){
+            local =  Integer.max(nums[i],local+nums[i]);
+            global = Integer.max(local,global);
+        }
+        return global;
     }
 
     /**
