@@ -1,8 +1,6 @@
 package LeetCode;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 
 /**
  * Convert a non-negative integer to its english words representation.
@@ -36,14 +34,14 @@ public class IntegerToEnglishWords {
 
     public static void main(String[] argv) {
         IntegerToEnglishWords i2w = new IntegerToEnglishWords();
-        System.out.println(i2w.numberToWords(1000000));
+        System.out.println(i2w.numberToWords(102938475));
     }
 
     public String numberToWords(int num) {
         LinkedList<String> ans = new LinkedList<>();
         int res = num % 1000;
         if (res > 0) {
-            String ons = toHds(res);
+            String ons = toHundreds(res);
             if (!"".equals(ons))
                 ans.offerFirst(ons);
         }
@@ -51,10 +49,10 @@ public class IntegerToEnglishWords {
         for (int i = 0; i < 3 && num != 0; i++) {
             res = num % 1000;
             if (res > 0) {
-                if ("" != v[i]) {
+                if (!"".equals(v[i])) {
                     ans.offerFirst(v[i]);
                 }
-                String hds = toHds(res);
+                String hds = toHundreds(res);
                 if (!"".equals(hds)) {
                     ans.offerFirst(hds);
                 }
@@ -64,8 +62,8 @@ public class IntegerToEnglishWords {
         return ans.isEmpty() ? "Zero" : String.join(" ", ans);
     }
 
-    public String toHds(int num) {
-        List<String> ans = new ArrayList<>();
+    public String toHundreds(int num) {
+        LinkedList<String> ans = new LinkedList<>();
         int hundred = num / 100;
         if (hundred > 0) {
             ans.add(v1[hundred]);
