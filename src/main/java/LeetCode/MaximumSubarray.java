@@ -30,7 +30,6 @@ public class MaximumSubarray {
      * 这样如果下一个元素遇到负数时,就有可能与这个最小相乘得到当前最大的乘积和,这也是利用乘法的性质得到的.
      */
     int maxProduct(int[] nums) {
-
         return 0;
     }
 
@@ -70,6 +69,4 @@ public class MaximumSubarray {
     int maxSum(int[] nums) {
         return 0;
     }
-
-
 }
