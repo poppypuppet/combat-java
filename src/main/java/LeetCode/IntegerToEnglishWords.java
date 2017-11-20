@@ -1,7 +1,5 @@
 package LeetCode;
 
-import java.util.LinkedList;
-
 /**
  * Convert a non-negative integer to its english words representation.
  * Given input is guaranteed to be less than 2^31 - 1.
@@ -28,62 +26,31 @@ import java.util.LinkedList;
  * 最后check一下末尾是否有空格,把空格都删掉,返回的时候检查下输入是否为0,是的话要返回'Zero'.
  */
 public class IntegerToEnglishWords {
-    private final String[] v = {"Thousand", "Million", "Billion"};
-    private final String[] v1 = {"", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"};
-    private final String[] v2 = {"", "", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"};
+    private String digits[] = {"Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"};
+    private String tens[] = {"Zero", "Ten", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"};
 
-    public static void main(String[] argv) {
-        IntegerToEnglishWords i2w = new IntegerToEnglishWords();
-        System.out.println(i2w.numberToWords(102938475));
+    String int2word(int num) {
+        if (num >= 1000000000)
+            return int2word(num / 1000000000) + " Billion" + int2word(num % 1000000000);
+        else if (num >= 1000000)
+            return int2word(num / 1000000) + " Million" + int2word(num % 1000000);
+        else if (num >= 1000)
+            return int2word(num / 1000) + " Thousand" + int2word(num % 1000);
+        else if (num >= 100)
+            return int2word(num / 100) + " Hundred" + int2word(num % 100);
+        else if (num >= 20)
+            return " " + tens[num / 10] + int2word(num % 10);
+        else if (num > 0)
+            return " " + digits[num];
+        else
+            return "";
     }
 
-    public String numberToWords(int num) {
-        LinkedList<String> ans = new LinkedList<>();
-        int res = num % 1000;
-        if (res > 0) {
-            String ons = toHundreds(res);
-            if (!"".equals(ons))
-                ans.offerFirst(ons);
+    String numberToWords(int num) {
+        if (num == 0)
+            return "Zero";
+        else {
+            return int2word(num).trim();
         }
-        num /= 1000;
-        for (int i = 0; i < 3 && num != 0; i++) {
-            res = num % 1000;
-            if (res > 0) {
-                if (!"".equals(v[i])) {
-                    ans.offerFirst(v[i]);
-                }
-                String hds = toHundreds(res);
-                if (!"".equals(hds)) {
-                    ans.offerFirst(hds);
-                }
-            }
-            num /= 1000;
-        }
-        return ans.isEmpty() ? "Zero" : String.join(" ", ans);
-    }
-
-    public String toHundreds(int num) {
-        LinkedList<String> ans = new LinkedList<>();
-        int hundred = num / 100;
-        if (hundred > 0) {
-            ans.add(v1[hundred]);
-            ans.add("Hundred");
-        }
-        int tens = num % 100;
-        if (tens >= 20) {
-            int ten = tens / 10;
-            int ones = tens % 10;
-            if (!"".equals(v2[ten])) {
-                ans.add(v2[ten]);
-            }
-            if (!"".equals(v1[ones])) {
-                ans.add(v1[ones]);
-            }
-        } else {
-            if (!"".equals(v1[tens])) {
-                ans.add(v1[tens]);
-            }
-        }
-        return ans.isEmpty() ? "" : String.join(" ", ans);
     }
 }
