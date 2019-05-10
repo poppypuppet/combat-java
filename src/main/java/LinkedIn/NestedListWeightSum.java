@@ -1,7 +1,5 @@
 package LinkedIn;
 
-import com.sun.istack.internal.NotNull;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,11 +14,11 @@ class NestedListWeightSum {
     int unweightedSum;
     int maxLevel;
 
-    public int depthSum(@NotNull List<NestedInteger> input) {
+    public int depthSum( List<NestedInteger> input) {
         return depthSumDFS(input, 1);
     }
 
-    private int depthSumDFS(@NotNull List<NestedInteger> input, int depth) {
+    private int depthSumDFS( List<NestedInteger> input, int depth) {
         int sum = 0;
         for (NestedInteger i : input) {
             if (i.isInteger()) {
@@ -43,7 +41,7 @@ class NestedListWeightSum {
      * 3x + 2y + z = 4(x + y + z) - (x + 2y + 3z)
      * 遍历时候取得每层和,外部在进行想加.
      */
-    public int reverseDepthSum(@NotNull List<NestedInteger> input) {
+    public int reverseDepthSum( List<NestedInteger> input) {
         ArrayList<Integer> levels = new ArrayList<>();
         reverseDepthSumDFS(input, 0, levels);
         int weight = levels.size();
@@ -55,7 +53,7 @@ class NestedListWeightSum {
         return sum;
     }
 
-    private void reverseDepthSumDFS(@NotNull List<NestedInteger> input, int index, ArrayList<Integer> levels) {
+    private void reverseDepthSumDFS( List<NestedInteger> input, int index, ArrayList<Integer> levels) {
         if (levels.size() <= index) {
             levels.add(0);
         }
@@ -106,7 +104,7 @@ class NestedListWeightSum {
         int weightedSum = 0;
         for (NestedInteger item : input) {
             if (item == null) {
-// ignore it
+                // ignore it
             } else if (item.isInteger()) {
                 weightedSum += item.getInteger() * depth;
                 unweightedSum += item.getInteger();
